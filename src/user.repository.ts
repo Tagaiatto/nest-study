@@ -3,6 +3,7 @@ export class UserRepository {
 
     async save(user) {
         this.users.push(user);
+        console.log(this.users);
     }
     
 }
