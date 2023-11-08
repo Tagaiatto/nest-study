@@ -1,7 +1,7 @@
 import { Controller, Post } from "@nestjs/common";
 
 @Controller('/users')
-export class UsersController{
+export class UserController{
     @Post()
     async createUser() {
         return 'Test /users';
