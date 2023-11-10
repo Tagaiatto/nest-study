@@ -2,7 +2,7 @@ import { Body, Controller, Post, Get } from "@nestjs/common";
 import { ProductRepository } from "./product.repository";
 
 @Controller('/users')
-export class UserController{
+export class ProductController{
     constructor(private productRepository: ProductRepository){}    
     
     @Post()
