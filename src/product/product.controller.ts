@@ -7,7 +7,7 @@ export class ProductController{
     
     @Post()
     async createUser(@Body() productData) {
-        const id = this.productRepository.save(productData);
+        const id = await this.productRepository.save(productData);
         return `ID = ${id}`;
     }
 
