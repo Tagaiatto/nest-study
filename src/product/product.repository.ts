@@ -4,8 +4,9 @@ import { Injectable } from "@nestjs/common";
 export class ProductRepository {
     private products = [];
 
-    async save(product) {
-        this.products.push(product);        
+    async save(product): Promise<number> {
+        this.products.push(product);
+        return this.products.length - 1;
     }
 
     async list() {
