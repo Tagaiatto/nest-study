@@ -7,8 +7,8 @@ export class UserController{
     
     @Post()
     async createUser(@Body() userData) {
-        this.userRepository.save(userData);
-        return userData;
+        const id = this.userRepository.save(userData);
+        return `ID = ${id}`;        
     }
 
     @Get()
