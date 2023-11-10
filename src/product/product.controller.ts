@@ -1,7 +1,7 @@
 import { Body, Controller, Post, Get } from "@nestjs/common";
 import { ProductRepository } from "./product.repository";
 
-@Controller('/users')
+@Controller('/products')
 export class ProductController{
     constructor(private productRepository: ProductRepository){}    
     
