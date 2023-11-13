@@ -12,5 +12,10 @@ export class UserRepository {
     async list() {
         return this.users;
     }
+
+    async emailAlreadyExists(email: string): Promise<boolean> {
+        const emailExists = this.users.some(user => user.email === email);
+        return emailExists;
+    }
     
 }
