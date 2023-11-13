@@ -1,4 +1,5 @@
-import { IsString, IsNumber, IsPositive, IsArray } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsString, IsNumber, IsPositive, IsArray, ValidateNested } from 'class-validator';
 
 export class CreateProductDTO {
   @IsString()
@@ -15,10 +16,14 @@ export class CreateProductDTO {
   @IsString()
   description: string;
 
+  @ValidateNested()
   @IsArray()
+  @Type(() => FeatureDTO)
   features: FeatureDTO[];
 
+  @ValidateNested()
   @IsArray()
+  @Type(() => ImageDTO)
   images: ImageDTO[];
 
   @IsString()
