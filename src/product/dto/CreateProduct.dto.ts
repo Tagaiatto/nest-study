@@ -1,7 +1,10 @@
 import { Type } from 'class-transformer';
-import { IsString, IsNumber, IsPositive, IsArray, ValidateNested } from 'class-validator';
+import { IsString, IsNumber, IsPositive, IsArray, ValidateNested, IsNotEmpty, MaxLength, Min, IsUrl, IsUUID } from 'class-validator';
 
 export class CreateProductDTO {
+  @IsUUID(undefined, { message: 'ID de usuário inválido.'})
+  usuarioId: string;
+  
   @IsString()
   name: string;
 
@@ -11,9 +14,12 @@ export class CreateProductDTO {
 
   @IsNumber()
   @IsPositive()
+  @Min(0, { message: 'Invalid minimum quantity'})
   quantityAvailable: number;
 
   @IsString()
+  @IsNotEmpty({ message: 'Product description could not be empty'})
+  @MaxLength(1000, { message: 'Product description could not have more than 1000 characters'})
   description: string;
 
   @ValidateNested()
@@ -46,6 +52,7 @@ export class FeatureDTO {
 
 export class ImageDTO {
   @IsString()
+  @IsUrl()
   url: string;
 
   @IsString()
