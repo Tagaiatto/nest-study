@@ -12,6 +12,6 @@ export class CreateUserDTO {
     @IsUniqueEmail({ message: 'Email already exists' })
     email: string;
 
-    @MinLength(6)
+    @MinLength(6, {message: 'Password must have at least 6 characters'})
     password: string;
 }
