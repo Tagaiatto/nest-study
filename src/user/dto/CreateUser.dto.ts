@@ -2,6 +2,9 @@ import { IsEmail, MinLength, IsNotEmpty } from "class-validator";
 import { IsUniqueEmail } from "../validation/uniqueEmail.validator";
 
 export class CreateUserDTO {    
+    @IsNotEmpty()
+    id:string;
+
     @IsNotEmpty({ message: 'Empty name' })
     name: string;
 
