@@ -3,7 +3,7 @@ import { IsString, IsNumber, IsPositive, IsArray, ValidateNested, IsNotEmpty, Ma
 
 export class CreateProductDTO {
   @IsUUID(undefined, { message: 'ID de usuário inválido.'})
-  usuarioId: string;
+  userId: string;
   
   @IsString()
   name: string;
