@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get } from "@nestjs/common";
+import { Body, Controller, Post, Get, Put } from "@nestjs/common";
 import { UserRepository } from "./user.repository";
 import { CreateUserDTO } from "./dto/CreateUser.dto";
 import { UserEntity } from "./user.entity";
@@ -29,5 +29,10 @@ export class UserController{
         const users = await this.userRepository.list();
         const returnUsers = users.map( user => new ListUserDTO(user.id, user.name) );
         return returnUsers;
+    }
+
+    @Put()
+    async updateUser(id: string, @Body() updatedData){
+
     }
 }
