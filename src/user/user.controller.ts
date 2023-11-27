@@ -19,7 +19,7 @@ export class UserController{
         userEntity.id = uuid();
         await this.userRepository.save(userEntity);
         return {
-            id: userEntity.id,
+            user: new ListUserDTO(userEntity.id, userEntity.name),
             message: `User ${userEntity.name}, created successfully!`
         };        
     }
@@ -27,7 +27,7 @@ export class UserController{
     @Get()
     async listUsers() {
         const users = await this.userRepository.list();
-        const returnUsers = users.map( user => new ListUserDTO(user.id, user.name));
+        const returnUsers = users.map( user => new ListUserDTO(user.id, user.name) );
         return returnUsers;
     }
 }
