@@ -4,6 +4,7 @@ import { CreateUserDTO } from "./dto/CreateUser.dto";
 import { UserEntity } from "./user.entity";
 import { v4 as uuid } from 'uuid';
 import { ListUserDTO } from "./dto/ListUser.dto";
+import { UpdateUserDTO } from "./dto/UpdateUser.dto";
 
 @Controller('/users')
 export class UserController{
@@ -31,8 +32,13 @@ export class UserController{
         return returnUsers;
     }
 
-    @Put()
-    async updateUser(id: string, @Body() updatedData){
+    @Put('/:id')
+    async updateUser(id: string, @Body() updatedData: UpdateUserDTO){
+        const updatedUser = this.userRepository.update(id, updatedData);
 
+        return {
+            user: updatedUser,
+            message: `User with id ${id}, updated successfully!`
+        };
     }
 }
