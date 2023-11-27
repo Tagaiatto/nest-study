@@ -5,12 +5,11 @@ import { UserEntity } from "./user.entity";
 export class UserRepository {
     private users: UserEntity[] = [];
 
-    async save(user: UserEntity): Promise<number> {
-        this.users.push(user);
-        return this.users.length - 1;        
+    async save(user: UserEntity): Promise<void> {
+        this.users.push(user);             
     }
 
-    async list() {
+    async list(): Promise<UserEntity[]> {
         return this.users;
     }
 
