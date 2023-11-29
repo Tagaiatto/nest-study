@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Put } from "@nestjs/common";
+import { Body, Controller, Post, Get, Put, Param } from "@nestjs/common";
 import { UserRepository } from "./user.repository";
 import { CreateUserDTO } from "./dto/CreateUser.dto";
 import { UserEntity } from "./user.entity";
@@ -33,7 +33,7 @@ export class UserController{
     }
 
     @Put('/:id')
-    async updateUser(id: string, @Body() updatedData: UpdateUserDTO){
+    async updateUser(@Param('id') id: string, @Body() updatedData: UpdateUserDTO){
         const updatedUser = this.userRepository.update(id, updatedData);
 
         return {
