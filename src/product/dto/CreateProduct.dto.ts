@@ -5,6 +5,9 @@ export class CreateProductDTO {
   @IsUUID(undefined, { message: 'ID de usuário inválido.'})
   userId: string;
   
+  @IsUUID(undefined, { message: 'ID de produto inválido.'})
+  id: string;
+
   @IsString()
   name: string;
 
