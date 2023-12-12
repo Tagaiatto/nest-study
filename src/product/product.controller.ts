@@ -1,7 +1,8 @@
-import { Body, Controller, Post, Get } from "@nestjs/common";
+import { Body, Controller, Post, Get, Put, Param } from "@nestjs/common";
 import { ProductRepository } from "./product.repository";
 import { CreateProductDTO } from "./dto/CreateProduct.dto";
 import { ListProductDTO } from "./dto/ListProduct.dto";
+import { UpdateProductDTO } from "./dto/UpdateProduct.dto";
 import { v4 as uuid } from 'uuid';
 import { ProductEntity } from "./product.entity";
 
@@ -32,7 +33,27 @@ export class ProductController{
     }
 
     @Get()
-    async listUsers() {
+    async listProducts() {
         return this.productRepository.list();
+    }
+
+    @Put('/:id')
+    async updateProduct(@Param('id') id:string, @Body() productData: UpdateProductDTO){
+        const updatedProduct = this.productRepository.update(id, productData);
+
+        return {
+            product: updatedProduct,
+            message: `Product with id ${id}, updated successfully!`
+        }
+    }
+
+    @delete('/:id')
+    async removeProduct(@Param('id') id: string){
+        const removedProduct = await this.productRepository.remove(id);
+
+        return {
+            product: removedProduct,
+            message: `Product with id ${id}, removed successfully!`
+        }
     }
 }

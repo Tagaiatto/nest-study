@@ -14,8 +14,23 @@ export class ProductRepository {
         return this.products;
     }
 
-    async update(id: string, idUser: string, updatedData: Partial<ProductEntity>): Promise<ProductEntity> {
+    async update(id: string, updatedData: Partial<ProductEntity>): Promise<ProductEntity> {
+        const product = this.findById(id);
+        Object.entries(updatedData).forEach(([key, value]) => {
+            if(['id', 'userId'].includes(key)){
+                return;
+            }
+            product[key] = value;
+        })
+        return product;
+    }
 
+    private findById(id: string): ProductEntity{
+        const product = this.products.find( registeredProduct => registeredProduct.id === id );
+        if(!product) {
+            throw new Error('Product not found');
+        }
+        return product;
     }
     
 }

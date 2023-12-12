@@ -1,7 +1,7 @@
 import { Type } from 'class-transformer';
 import { IsString, IsNumber, IsPositive, IsArray, ValidateNested, IsNotEmpty, MaxLength, Min, IsUrl, IsUUID, IsOptional } from 'class-validator';
 
-export class CreateProductDTO {
+export class UpdateProductDTO {
   @IsUUID(undefined, { message: 'ID de usuário inválido.'})
   userId: string;
   
