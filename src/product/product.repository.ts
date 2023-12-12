@@ -6,13 +6,16 @@ import { promises } from "dns";
 export class ProductRepository {
     private products: ProductEntity[] = [];
 
-    async save(product: ProductEntity): Promise<number> {
-        this.products.push(product);
-        return this.products.length - 1;
+    async save(product: ProductEntity): Promise<void> {
+        this.products.push(product);        
     }
 
     async list(): Promise<ProductEntity[]> {
         return this.products;
+    }
+
+    async update(id: string, idUser: string, updatedData: Partial<ProductEntity>): Promise<ProductEntity> {
+
     }
     
 }
