@@ -25,6 +25,12 @@ export class ProductRepository {
         return product;
     }
 
+    async remove(id: string): Promise<ProductEntity> {
+        const product = this.findById(id);
+        this.products = this.products.filter(p => p !== product);
+        return product;
+    }
+
     private findById(id: string): ProductEntity{
         const product = this.products.find( registeredProduct => registeredProduct.id === id );
         if(!product) {
