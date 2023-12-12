@@ -1,6 +1,7 @@
 import { Body, Controller, Post, Get } from "@nestjs/common";
 import { ProductRepository } from "./product.repository";
 import { CreateProductDTO } from "./dto/CreateProduct.dto";
+import { ListProductDTO } from "./dto/ListProduct.dto";
 import { v4 as uuid } from 'uuid';
 import { ProductEntity } from "./product.entity";
 
@@ -15,7 +16,7 @@ export class ProductController{
         
         product.name = name;
         product.price = price;
-        product.quantityAvailable = quantityAvailable; // Assuming there's a property for quantityAvailable
+        product.quantityAvailable = quantityAvailable; 
         product.description = description;
         product.features = features;
         product.images = images;
@@ -25,6 +26,7 @@ export class ProductController{
         product.id = uuid();
         await this.productRepository.save(product);
         return {
+            product: new ListProductDTO(product.id, product.name),
             message: `Product ${product.name} created successfully!`
         };
     }
